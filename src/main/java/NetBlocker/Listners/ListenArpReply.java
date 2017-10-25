@@ -43,7 +43,6 @@ public class ListenArpReply implements Runnable {
     private PacketListener listener = new PacketListener() {
         @Override
         public void gotPacket(Packet packet) {
-            System.out.println("packet received");
             if (packet.contains(ArpPacket.class)) {
                 ArpPacket arp = packet.get(ArpPacket.class);
                 if (arp.getHeader().getOperation().equals(ArpOperation.REPLY)) {

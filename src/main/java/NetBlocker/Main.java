@@ -5,9 +5,11 @@ import NetBlocker.Listners.ListenArpReply;
 import NetBlocker.Scanners.ScanNetwork;
 import NetBlocker.Scanners.SendSpoofPackets;
 import org.apache.commons.cli.*;
+import org.pcap4j.core.PcapAddress;
 import org.pcap4j.core.PcapHandle;
 import org.pcap4j.core.PcapNetworkInterface;
 import org.pcap4j.core.Pcaps;
+import org.pcap4j.util.LinkLayerAddress;
 import org.pcap4j.util.MacAddress;
 import org.pcap4j.util.NifSelector;
 
@@ -52,16 +54,13 @@ public class Main {
                 return;
             }
             checkOptions(cmd);
-            System.out.println("options done");
             ipMap = new ConcurrentHashMap<>();
             switchOffLogging();
-            System.out.println(ipAddress.getHostAddress());
             PcapNetworkInterface nif = Pcaps.getDevByAddress(ipAddress);
-            nif = new NifSelector().selectNetworkInterface();
+
             int snapLen = 65536;
             PcapNetworkInterface.PromiscuousMode mode = PcapNetworkInterface.PromiscuousMode.PROMISCUOUS;
             int timeout = 10;
-            System.out.println(nif);
             PcapHandle sendnHandle = nif.openLive(snapLen, mode, timeout);
             PcapHandle receiveHandle = nif.openLive(snapLen, mode, timeout);
             sheduler = Executors.newScheduledThreadPool(3);
@@ -177,7 +176,7 @@ public class Main {
         options.addOption("mac", true, "machine mac address (separator :)");
         options.addOption("bip", true, "ip to block for others(gateway address)");
         options.addOption("n", true, "network  ie 192.168.1 or 110 or 160.5 ie the network classes");
-        options.addOption("a", "ips to exclude the attack leave ips list blank to block all (required this or -b)");
+        options.addOption("a", "ips to exclude the attack, leave -ips list blank or when ips asked hit enter to block all (required this or -b)");
         options.addOption("b", "ips to block (required this or -a)");
         options.addOption("ips", true, "ips to attack comma separated");
         options.addOption("rmac", "randomizes the source mac default this machine mac address");
