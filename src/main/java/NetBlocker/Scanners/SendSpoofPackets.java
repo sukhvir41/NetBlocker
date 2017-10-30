@@ -28,7 +28,15 @@ public class SendSpoofPackets implements Runnable {
     private InetAddress gatewayAddress;
     private boolean loopback;
 
-    public SendSpoofPackets(PcapHandle sendHandle, Map<InetAddress, MacAddress> ipMap, MacAddress myMacAddress, boolean randomMac, InetAddress gatewayAddress, boolean loopback, InetAddress myInetAddress) {
+    public SendSpoofPackets(
+            PcapHandle sendHandle,
+            Map<InetAddress, MacAddress> ipMap,
+            MacAddress myMacAddress,
+            boolean randomMac,
+            InetAddress gatewayAddress,
+            boolean loopback,
+            InetAddress myInetAddress) {
+
         this.sendHandle = sendHandle;
         this.ipMap = ipMap;
         this.myMacAddress = myMacAddress;
@@ -36,14 +44,8 @@ public class SendSpoofPackets implements Runnable {
         this.gatewayAddress = gatewayAddress;
         this.loopback = loopback;
         this.myInetAddress = myInetAddress;
-        if (ipMap.size() > 2) {
-            List<MacAddress> randMacs = new ArrayList<>(ipMap.values());
-            for (int i = 0; i < 3; i++) {
-                randomMacs[i] = randMacs.get(((int) (Math.random() * 10)) % randMacs.size());
-            }
-        } else {
-            this.randomMac = false;
-        }
+        randomMacs = new MacAddress[3];
+
     }
 
 
@@ -65,6 +67,7 @@ public class SendSpoofPackets implements Runnable {
 
             }
         } catch (Exception ex) {
+            ex.printStackTrace();
             System.err.println(ex.getMessage());
             System.exit(1);
         }
@@ -121,7 +124,7 @@ public class SendSpoofPackets implements Runnable {
 
 
     private MacAddress getMacAddress(MacAddress destinationMacAddress) {
-        if (randomMac) {
+        if (isRandomMac()) {
             int randomNumber = (int) (Math.random() * 10);
             MacAddress randMac = randomMacs[randomNumber % randomMacs.length];
             if (randMac.equals(destinationMacAddress)) {
@@ -132,6 +135,23 @@ public class SendSpoofPackets implements Runnable {
 
         } else {
             return myMacAddress;
+        }
+    }
+
+    private boolean isRandomMac() {
+        if (randomMac) {
+            if (randomMacs[2] == null && ipMap.size() > 2) {
+                List<MacAddress> randMacs = new ArrayList<>(ipMap.values());
+                for (int i = 0; i < 3; i++) {
+                    randomMacs[i] = randMacs.get(((int) (Math.random() * 10)) % randMacs.size());
+                }
+                return true;
+            } else if (randomMacs[2] != null) {
+                return true;
+            }
+            return false;
+        } else {
+            return false;
         }
     }
 }

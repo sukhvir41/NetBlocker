@@ -5,13 +5,10 @@ import NetBlocker.Listners.ListenArpReply;
 import NetBlocker.Scanners.ScanNetwork;
 import NetBlocker.Scanners.SendSpoofPackets;
 import org.apache.commons.cli.*;
-import org.pcap4j.core.PcapAddress;
 import org.pcap4j.core.PcapHandle;
 import org.pcap4j.core.PcapNetworkInterface;
 import org.pcap4j.core.Pcaps;
-import org.pcap4j.util.LinkLayerAddress;
 import org.pcap4j.util.MacAddress;
-import org.pcap4j.util.NifSelector;
 
 import java.net.InetAddress;
 import java.util.ArrayList;
@@ -66,6 +63,7 @@ public class Main {
             sheduler = Executors.newScheduledThreadPool(3);
             sheduler.scheduleAtFixedRate(new ScanNetwork(network, ipsToAttack, allow, sendnHandle, macAddress, ipAddress, gatewayAddress), 0, 5, TimeUnit.MINUTES);
             sheduler.scheduleWithFixedDelay(new SendSpoofPackets(sendnHandle, ipMap, macAddress, randomMac, gatewayAddress, loopback, ipAddress), 0, delay, TimeUnit.SECONDS);
+            System.out.println("ignore the top lines about SLF4J");
             System.out.println("running");
             new ListenArpReply(ipsToAttack, ipMap, receiveHandle, allow).run();
         } catch (Exception e) {
@@ -149,8 +147,7 @@ public class Main {
             String[] ips = next.split(",");
             for (int i = 0; i < ips.length; i++) {
                 InetAddress address = InetAddress.getByName(ips[i]);
-                ipsToAttack.add(address);// this machine ip address
-                ipsToAttack.add(gatewayAddress);
+                ipsToAttack.add(address);
             }
         }
         if (allow) {

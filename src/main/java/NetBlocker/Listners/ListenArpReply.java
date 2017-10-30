@@ -34,6 +34,7 @@ public class ListenArpReply implements Runnable {
             receiveHandle.setFilter("arp", BpfProgram.BpfCompileMode.OPTIMIZE);
             receiveHandle.loop(-1, listener);
         } catch (Exception e) {
+            e.printStackTrace();
             System.err.println(e.getMessage());
             System.exit(1);
         }
