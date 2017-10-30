@@ -100,7 +100,7 @@ public class Main {
             System.out.println("enter the network");
             network = scanner.nextLine();
         }
-        if (cmd.hasOption("a") || cmd.hasOption("b") && !(cmd.hasOption("a") || cmd.hasOption("b"))) {
+        if (cmd.hasOption("a") || cmd.hasOption("b")) {
             allow = cmd.hasOption("a");
         } else {
             throw new MissingArgumentException("need option -a or -b");
