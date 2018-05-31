@@ -7,24 +7,28 @@ import org.pcap4j.packet.ArpPacket;
 import org.pcap4j.packet.Packet;
 import org.pcap4j.packet.namednumber.ArpOperation;
 import org.pcap4j.util.MacAddress;
+import proto.sender.SpoofArpReply;
 
 import java.net.InetAddress;
-import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.CompletableFuture;
 
 
-public class ReplyListners implements Runnable, PacketListener {
+public class ReplyListner implements Runnable, PacketListener {
 
 
     private PcapHandle receiveHandle;
-    private List<InetAddress> ipsToIgnore; // list of ips to ignore like gateway or spcifed list of ips
-    private Map<InetAddress, MacAddress> ipMaps; // ipaddress map with their mac
+    private Set<InetAddress> ipsToIgnore; // list of ips to ignore like gateway or spcifed list of ips
+    private Map<InetAddress, MacAddress> ipMaps; // ip address map with their mac
+    private SpoofArpReply spoofArpReply;
 
-
-    public ReplyListners(PcapHandle receiveHandle, List<InetAddress> ipsToIgnore, Map<InetAddress, MacAddress> ipMaps) {
+    public ReplyListner(PcapHandle receiveHandle, Set<InetAddress> ipsToIgnore, Map<InetAddress, MacAddress> ipMaps, SpoofArpReply theSpoofArpReply) {
         this.receiveHandle = receiveHandle;
         this.ipsToIgnore = ipsToIgnore;
         this.ipMaps = ipMaps;
+        this.spoofArpReply = theSpoofArpReply;
+
     }
 
     @Override
@@ -46,8 +50,13 @@ public class ReplyListners implements Runnable, PacketListener {
             ArpPacket arp = packet.get(ArpPacket.class);
             if (arp.getHeader().getOperation().equals(ArpOperation.REPLY)) {
                 workWithArpPacket(arp);
+            } else if (arp.getHeader().getOperation().equals(ArpOperation.REQUEST)) {
+                spoofArpReply.setReceivers(arp.getHeader().getSrcProtocolAddr(), arp.getHeader().getSrcHardwareAddr());
+                CompletableFuture.runAsync(spoofArpReply);
             }
         }
+
+
     }
 
     /**
@@ -61,7 +70,6 @@ public class ReplyListners implements Runnable, PacketListener {
 
         if (!ipsToIgnore.contains(ipAddress)) {
             ipMaps.put(ipAddress, macAddress);
-            System.out.println(ipAddress+ "     :    "+ macAddress);
         }
 
     }
