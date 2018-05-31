@@ -119,6 +119,7 @@ public class SendSpoofPackets implements Runnable {
                 .paddingAtBuild(true);
 
         Packet packet = etherBuilder.build();
+        System.out.println(packet);
         sendHandle.sendPacket(packet);
     }
 

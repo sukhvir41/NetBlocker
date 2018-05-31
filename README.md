@@ -6,6 +6,8 @@ This application will help you block users internet access in your network.
 You can find the application in the download folder and download it. You will be needing Java and winpcap in your machine
 for this application to work
 
+<b>Please do not use this in unauthorized networks</b>
+
 <b>Instructions</b> :
 Windows
 -doanload and install winpacp from the link below

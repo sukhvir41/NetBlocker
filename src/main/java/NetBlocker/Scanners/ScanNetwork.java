@@ -16,8 +16,8 @@ import java.util.List;
 
 public class ScanNetwork implements Runnable {
 
-    private String network;
-    private List<InetAddress> ips;
+    private String network; // network address eg. 192.168.0
+    private List<InetAddress> ips; // ips to attack
     private boolean allow;
     private PcapHandle sendHandle;
     private MacAddress myMacAddress;
@@ -27,7 +27,8 @@ public class ScanNetwork implements Runnable {
     public ScanNetwork
             (String theNetwork,
              List<InetAddress> theAttackIps,
-             boolean allow, PcapHandle sendHandle,
+             boolean allow,
+             PcapHandle sendHandle,
              MacAddress myMacaddress,
              InetAddress myAddress,
              InetAddress gatewayAddress) {

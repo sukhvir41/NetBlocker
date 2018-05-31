@@ -20,7 +20,7 @@ dependencies {
 jar {
     baseName jarName
     manifest {
-        attributes "Main-Class": "NetBlocker.Main"
+        attributes "Main-Class": "proto.Main"
     }
 
     from {

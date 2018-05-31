@@ -41,6 +41,7 @@ public class Main {
     private static ScheduledExecutorService sheduler;
 
     public static void main(String[] args) {
+
         try {
             scanner = new Scanner(System.in);
             Options options = new Options();

@@ -1,4 +1,4 @@
-package proto.listner;
+package proto.listener;
 
 import org.pcap4j.core.BpfProgram;
 import org.pcap4j.core.PacketListener;
@@ -15,7 +15,7 @@ import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
 
-public class ReplyListner implements Runnable, PacketListener {
+public class ReplyListener implements Runnable, PacketListener {
 
 
     private PcapHandle receiveHandle;
@@ -23,7 +23,7 @@ public class ReplyListner implements Runnable, PacketListener {
     private Map<InetAddress, MacAddress> ipMaps; // ip address map with their mac
     private SpoofArpReply spoofArpReply;
 
-    public ReplyListner(PcapHandle receiveHandle, Set<InetAddress> ipsToIgnore, Map<InetAddress, MacAddress> ipMaps, SpoofArpReply theSpoofArpReply) {
+    public ReplyListener(PcapHandle receiveHandle, Set<InetAddress> ipsToIgnore, Map<InetAddress, MacAddress> ipMaps, SpoofArpReply theSpoofArpReply) {
         this.receiveHandle = receiveHandle;
         this.ipsToIgnore = ipsToIgnore;
         this.ipMaps = ipMaps;
@@ -34,7 +34,7 @@ public class ReplyListner implements Runnable, PacketListener {
     @Override
     public void run() {
         try {
-            receiveHandle.setFilter("arp", BpfProgram.BpfCompileMode.OPTIMIZE);
+            receiveHandle.setFilter("arp or icmp", BpfProgram.BpfCompileMode.OPTIMIZE);
             receiveHandle.loop(-1, this);
         } catch (Exception e) {
             e.printStackTrace();
