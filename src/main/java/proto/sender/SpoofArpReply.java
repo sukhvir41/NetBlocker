@@ -11,14 +11,22 @@ import org.pcap4j.util.ByteArrays;
 import org.pcap4j.util.MacAddress;
 
 import java.net.InetAddress;
+import java.util.Objects;
 
-public class SpoofArpReply implements  Runnable {
+public class SpoofArpReply implements Runnable {
 
-    private PcapHandle sendHandle;
-    private MacAddress spoofMacAddress;
-    private InetAddress spoofIpAddress;
-    private InetAddress receiverIpAddress;
-    private MacAddress receiverMacAddress;
+    private final PcapHandle sendHandle;
+    private final MacAddress spoofMacAddress; //spoof mac address
+    private final InetAddress spoofIpAddress; // spoof ip address
+    private InetAddress receiverIpAddress; // to whom to send the reply
+    private MacAddress receiverMacAddress; // to whom to send the reply
+
+    /**
+     *
+     * @param sendHandle - pcap handle used send packets
+     * @param spoofMacAddress - spoof mac address. used send the fake arp reply for the fake arp request
+     * @param spoofIpAddress - spoof mac address. used send the fake arp reply for the fake arp request
+     */
 
     public SpoofArpReply(PcapHandle sendHandle, MacAddress spoofMacAddress, InetAddress spoofIpAddress) {
         this.sendHandle = sendHandle;
@@ -29,14 +37,16 @@ public class SpoofArpReply implements  Runnable {
     @Override
     public void run() {
         try {
-            sendArpReply();
+            if (Objects.nonNull(receiverIpAddress) && Objects.nonNull(receiverMacAddress)) {
+                sendArpReply();
+            }
         } catch (Exception e) {
             e.printStackTrace();
             System.exit(1);
         }
     }
 
-    private void  sendArpReply() throws Exception {
+    private void sendArpReply() throws Exception {
         ArpPacket.Builder arpBuilder = new ArpPacket.Builder();
         arpBuilder
                 .hardwareType(ArpHardwareType.ETHERNET)
@@ -61,7 +71,7 @@ public class SpoofArpReply implements  Runnable {
     }
 
 
-    public void setReceivers(InetAddress theRreceiverIp, MacAddress theReceiverMac){
+    public void setReceivers(InetAddress theRreceiverIp, MacAddress theReceiverMac) {
         receiverIpAddress = theRreceiverIp;
         receiverMacAddress = theReceiverMac;
     }

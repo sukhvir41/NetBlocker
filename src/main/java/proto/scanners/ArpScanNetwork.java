@@ -11,21 +11,28 @@ import org.pcap4j.util.ByteArrays;
 import org.pcap4j.util.MacAddress;
 
 import java.net.InetAddress;
-import java.util.Map;
 
 public class ArpScanNetwork implements Runnable {
 
     private PcapHandle sendHandle;  // pcap handle send send packets
     private String network; // network address of the network eg. 192.168.0
-    private Map<InetAddress, MacAddress> ipMap; // containing ips and mac of machines to attack
     private InetAddress ipAddress; // ip used to search the network
     private MacAddress macAddress; // mac used to search the network
-    public ArpScanNetwork(PcapHandle theSendhandle, String theNetwork, Map<InetAddress, MacAddress> theIplist, InetAddress theIpAddress, MacAddress theMacaddress) {
-        sendHandle = theSendhandle;
+
+    /**
+     *
+     * @param theSendHandle - pcap handle used to scan the network
+     * @param theNetwork -  network id  of the network eg. 192.168.1, 10 , 130.5
+     * @param theIpAddress - ip address to use for scanning the network
+     * @param theMacAddress - mac address to use for scanning the network
+     */
+    public ArpScanNetwork(PcapHandle theSendHandle, String theNetwork, InetAddress theIpAddress, MacAddress theMacAddress) {
+        sendHandle = theSendHandle;
         network = theNetwork;
-        ipMap = theIplist;
         ipAddress = theIpAddress;
-        this.macAddress = theMacaddress;
+        this.macAddress = theMacAddress;
+        System.out.println("ip and mac used to scan the network");
+        System.out.println( ipAddress + " ------ " + macAddress);
     }
 
 
@@ -109,7 +116,7 @@ public class ArpScanNetwork implements Runnable {
                 .protocolAddrLength((byte) ByteArrays.INET4_ADDRESS_SIZE_IN_BYTES)
                 .operation(ArpOperation.REQUEST)
                 .srcHardwareAddr(macAddress)
-                .srcProtocolAddr(ipAddress)
+                .srcProtocolAddr(this.ipAddress)
                 .dstHardwareAddr(MacAddress.ETHER_BROADCAST_ADDRESS)
                 .dstProtocolAddr(ipAddress);
 

