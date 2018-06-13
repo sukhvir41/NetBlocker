@@ -6,6 +6,7 @@ import org.pcap4j.core.PcapHandle;
 import org.pcap4j.core.PcapNetworkInterface;
 import org.pcap4j.core.Pcaps;
 import org.pcap4j.util.MacAddress;
+import org.pcap4j.util.NifSelector;
 import proto.listener.ReplyListener;
 import proto.scanners.ArpScanNetwork;
 import proto.sender.ArpSpoofSender;
@@ -23,8 +24,8 @@ public class Main implements Runnable {
     private String network = ""; // network address of thee network eg. 192.168.0
     private PcapHandle sendHandle;
     private PcapHandle receiveHandle;
-    private MacAddress spoofMacAddress; // false macaddress used to scan the network and send false arp packets
-    private InetAddress spoofInetAddress;
+  /*  private MacAddress spoofMacAddress; // false macaddress used to scan the network and send false arp packets
+    private InetAddress spoofInetAddress;*/
     private Map<InetAddress, MacAddress> ipMaps;
     private InetAddress addressToBlock; // ip address to block for others eg. gateway address
     private ArpScanNetwork arpScan; // scans the network using arp packets
@@ -36,7 +37,7 @@ public class Main implements Runnable {
     private InetAddress machineAddress;
     private ArpSpoofSender arpSpoofSender;
     private MacAddress machineMacAddress;
-    private SpoofArpReply spoofArpReply;
+   // private SpoofArpReply spoofArpReply;
 
 
     public Main(String... args) throws ParseException {
@@ -88,7 +89,6 @@ public class Main implements Runnable {
             if (cmd.hasOption("myip")) {
                 String ip = cmd.getOptionValue("myip");
                 machineAddress = InetAddress.getByName(ip);
-                networkInterface = Pcaps.getDevByAddress(machineAddress);
                 ignoreIps.add(machineAddress);
             } else {
                 throw new MissingArgumentException("please provide ip to block for others");
@@ -102,7 +102,7 @@ public class Main implements Runnable {
                 System.out.println("length of ips to ignore  is  +++++" + ignoreIps.size());
             }
 
-            if (cmd.hasOption("sip")) {
+           /* if (cmd.hasOption("sip")) {
                 spoofInetAddress = InetAddress.getByName(cmd.getOptionValue("sip").trim());
                 ignoreIps.add(spoofInetAddress);
             } else {
@@ -113,7 +113,10 @@ public class Main implements Runnable {
                 spoofMacAddress = MacAddress.getByName(cmd.getOptionValue("smac").trim());
             } else {
                 throw new MissingArgumentException("Please provide spoof mac address");
-            }
+            }*/
+
+            //selecting network interface
+            networkInterface = new NifSelector().selectNetworkInterface();
 
             if (networkInterface == null) {
                 throw new MissingArgumentException("Please provide valid machine ip address");
@@ -126,9 +129,10 @@ public class Main implements Runnable {
             receiveHandle = networkInterface.openLive(65536, PcapNetworkInterface.PromiscuousMode.PROMISCUOUS, 10);
 
             // working settings
-            spoofArpReply = new SpoofArpReply(sendHandle, spoofMacAddress, spoofInetAddress);
+            //spoofArpReply = new SpoofArpReply(sendHandle, spoofMacAddress, spoofInetAddress);
             arpScan = new ArpScanNetwork(sendHandle, network, machineAddress, machineMacAddress);
-            listner = new ReplyListener(receiveHandle, ignoreIps, ipMaps, spoofArpReply, spoofInetAddress);
+            listner = new ReplyListener(receiveHandle, ignoreIps, ipMaps);
+
             arpSpoofSender = new ArpSpoofSender(ipMaps, addressToBlock, machineMacAddress, sendHandle);
 
             ScheduledExecutorService scheduledExecutor = Executors.newScheduledThreadPool(2);
@@ -142,7 +146,7 @@ public class Main implements Runnable {
                 System.out.println("press 'p' to print ips under attack or 'q' to quit");
                 String input = scanner.nextLine().trim();
                 if (input.equals("p")) {
-                    System.out.println(" ips under attack");
+                    System.out.println("ips under attack");
                     ipMaps.entrySet()
                             .forEach(entry -> System.out.println(entry.getKey() + "  :  " + entry.getValue()));
                     System.out.println("-------------------------------------------");
@@ -185,8 +189,8 @@ public class Main implements Runnable {
         options.addOption("a", "ips to exclude exclude from the attack, separate by ','");
         options.addOption("h", "help me");
         options.addOption("myip", true, "Machine Ip address");
-        options.addOption("smac", true, "spoof mac. Used to scan network and usd in attack");
-        options.addOption("sip", true, "spoof ip. Used to scan the network");
+        /*options.addOption("smac", true, "spoof mac. Used to scan network and usd in attack");
+        options.addOption("sip", true, "spoof ip. Used to scan the network");*/
     }
 
 

@@ -115,7 +115,7 @@ public class ArpScanNetwork implements Runnable {
                 .hardwareAddrLength((byte) MacAddress.SIZE_IN_BYTES)
                 .protocolAddrLength((byte) ByteArrays.INET4_ADDRESS_SIZE_IN_BYTES)
                 .operation(ArpOperation.REQUEST)
-                .srcHardwareAddr(macAddress)
+                .srcHardwareAddr(this.macAddress)
                 .srcProtocolAddr(this.ipAddress)
                 .dstHardwareAddr(MacAddress.ETHER_BROADCAST_ADDRESS)
                 .dstProtocolAddr(ipAddress);
