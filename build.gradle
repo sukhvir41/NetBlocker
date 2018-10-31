@@ -20,7 +20,7 @@ dependencies {
 jar {
     baseName jarName
     manifest {
-        attributes "Main-Class": "proto.Main"
+        attributes "Main-Class": "NetBlocker.Main"
     }
 
     from {
@@ -43,13 +43,11 @@ task MainJar {
     dependsOn "CopyJar", "clean"
     def runFile = new File("download/run.bat")
     runFile.createNewFile()
-    runFile.setText "net start npf \n" +
-            "java -jar $jarName-${version}.jar -h \n" +
-            "java -jar $jarName-${version}.jar -a "
+    runFile.setText "java -jar $jarName-${version}.jar -h"
     def readmeFile = new File("download/readme.txt")
     readmeFile.createNewFile()
     readmeFile.setText "start the run batch file in cmd with admin privileges \n" +
             "install wincap and add wpcap.dll and Packet.dll location to system environment variable in PATH \n" +
-            "they are places in windows32 folder"
+            "they are placed in system32 folder"
 
 }

@@ -1,25 +1,25 @@
 
-<b>NetBlocker</b>
+<h1>NetBlocker</h1>
 
-This application will help you block users internet access in your network.
+This application will help you block machines on the network to communicate with a specific machine in your network.
 
 You can find the application in the download folder and download it. You will be needing Java and winpcap in your machine
 for this application to work
 
-<b>Please do not use this in unauthorized networks</b>
+<h3>Please do not use this in unauthorized networks</h3>
 
-<b>Instructions</b> :
-Windows
--doanload and install winpacp from the link below
--winpcap <a href ="https://www.winpcap.org/install/" target="_blank">download</a>
--add the location Packet.dll and wpcap.dll to system environment variable in PATH variable located in system32 folder
--eg:- C:\Windows\System32\wpcap.dll; C:\Windows\System32\Packet.dll;
-
-Linux
--install libpcap
-
-Mac Os
--not tested
+<h2>Instructions</h2>
+<b>Windows<b> <br>
+<ul>
+<li>doanload and install winpacp from the link below</li>
+<li>winpcap <a href ="https://www.winpcap.org/install/" target="_blank">download</a></li>
+<li>add the location Packet.dll and wpcap.dll to system environment variable in PATH variable located in system32 folder</li>
+<li>eg:- C:\Windows\System32\wpcap.dll; C:\Windows\System32\Packet.dll;</li>
+</ul>
+<b>Linux</b>
+<ul>
+<li>install libpcap</li>
+</ul>
 
 <b>libraries used</b>
 
@@ -30,10 +30,6 @@ apache commons-cli - <a href="https://github.com/apache/commons-cli" target="_bl
 <b>Usage examples</b>
 
 java -jar NetBlocker.jar -h (help)
-
-java -jar NetBlocker.jar -ip 192.168.1.3 -mac aa:aa:aa:aa:aa:aa -a -n 192.168.1  (allow mode)
-
-java -jar NetBlocker.jar -ip 192.168.0.3 -mac aa:aa:aa:aa:aa:aa -b -n 192.168.0 -ips 192.168.0.5,192.168.0.8 (block mode)
 
 
 

@@ -1,4 +1,4 @@
-package proto.scanners;
+package NetBlocker.scanners;
 
 import org.pcap4j.core.PcapHandle;
 import org.pcap4j.packet.ArpPacket;
@@ -14,10 +14,17 @@ import java.net.InetAddress;
 
 public class ArpScanNetwork implements Runnable {
 
-    private PcapHandle sendHandle;  // pcap handle send send packets
-    private String network; // network address of the network eg. 192.168.0
-    private InetAddress ipAddress; // ip used to search the network
-    private MacAddress macAddress; // mac used to search the network
+    // pcap handle send send packets
+    private PcapHandle sendHandle;
+
+    // network address of the network eg. 192.168.0
+    private String network;
+
+    // ip used to search the network
+    private InetAddress ipAddress;
+
+    // mac used to search the network
+    private MacAddress macAddress;
 
     /**
      *
@@ -27,9 +34,9 @@ public class ArpScanNetwork implements Runnable {
      * @param theMacAddress - mac address to use for scanning the network
      */
     public ArpScanNetwork(PcapHandle theSendHandle, String theNetwork, InetAddress theIpAddress, MacAddress theMacAddress) {
-        sendHandle = theSendHandle;
-        network = theNetwork;
-        ipAddress = theIpAddress;
+        this.sendHandle = theSendHandle;
+        this.network = theNetwork;
+        this.ipAddress = theIpAddress;
         this.macAddress = theMacAddress;
         System.out.println("ip and mac used to scan the network");
         System.out.println( ipAddress + " ------ " + macAddress);
@@ -39,7 +46,7 @@ public class ArpScanNetwork implements Runnable {
     @Override
     public void run() {
         try {
-            indentifyClassAndScan();
+            identifyClassAndScan();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -51,7 +58,7 @@ public class ArpScanNetwork implements Runnable {
     /**
      * this method checks the class and then scans the network
      */
-    private void indentifyClassAndScan() throws Exception {
+    private void identifyClassAndScan() throws Exception {
         String[] array = network.split("\\.");
 
         for (String ipblock : array) {
