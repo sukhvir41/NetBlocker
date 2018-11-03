@@ -12,7 +12,7 @@ for this application to work
 
 <b>Windows</b>
 <ul>
-<li>doanload and install winpacp from the link below</li>
+<li>doanload and install winpcap from the link below</li>
 <li>winpcap <a href ="https://www.winpcap.org/install/" target="_blank">download</a></li>
 <li>add the location Packet.dll and wpcap.dll to system environment variable in PATH variable located in system32 folder</li>
 <li>eg:- C:\Windows\System32\wpcap.dll; C:\Windows\System32\Packet.dll;</li>

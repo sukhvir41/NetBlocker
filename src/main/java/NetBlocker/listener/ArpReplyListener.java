@@ -10,7 +10,6 @@ import org.pcap4j.packet.namednumber.ArpOperation;
 import org.pcap4j.util.MacAddress;
 
 import java.io.Closeable;
-import java.io.IOException;
 import java.net.InetAddress;
 import java.util.Map;
 import java.util.Set;
@@ -34,9 +33,11 @@ public class ArpReplyListener implements Runnable, PacketListener, Closeable {
     private final InetAddress machineToBlock;
 
     /**
-     * @param receiveHandle    - pcap handle used to receive packets
-     * @param machinesToIgnore - set of ips not to attack
-     * @param machinesToAttack - map to ips and mac that need to updated with attack ips
+     * @param receiveHandle    pcap handle used to receive packets
+     * @param machinesToIgnore set of ips not to attack
+     * @param machinesToAttack map to ips and mac that need to updated with attack ips
+     * @param machineIpAddress this machine Ip address
+     * @param machineToBlock   machine to block for others Ip address
      */
     public ArpReplyListener(
             PcapHandle receiveHandle,
@@ -85,13 +86,16 @@ public class ArpReplyListener implements Runnable, PacketListener, Closeable {
         InetAddress ipAddress = thePacket.getHeader().getSrcProtocolAddr();
         MacAddress macAddress = thePacket.getHeader().getSrcHardwareAddr();
 
-        if (!machinesToIgnore.contains(macAddress) || !machineToBlock.equals(ipAddress) || !machineIpAddress.equals(ipAddress))
+
+        if (!(machinesToIgnore.contains(macAddress) || machineToBlock.equals(ipAddress) || machineIpAddress.equals(ipAddress))) {
+            System.out.println("machine added " + ipAddress + "  " + macAddress);
             machinesToAttack.put(ipAddress, macAddress);
+        }
     }
 
 
     @Override
-    public void close(){
+    public void close() {
         try {
             if (receiveHandle.isOpen())
                 receiveHandle.breakLoop();

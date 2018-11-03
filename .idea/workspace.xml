@@ -1,40 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="38918952-d340-48d0-bed7-26f0450a161c" name="Default" comment="Went back to basic implementation">
-      <change afterPath="$PROJECT_DIR$/src/main/java/NetBlocker/listener/ArpReplyListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/NetBlocker/sender/ArpReplySender.java" afterDir="false" />
+    <list default="true" id="38918952-d340-48d0-bed7-26f0450a161c" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.gradle/3.5-rc-2/fileContent/fileContent.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/3.5-rc-2/fileContent/fileContent.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/3.5-rc-2/taskHistory/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/3.5-rc-2/taskHistory/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/3.5-rc-2/taskHistory/fileSnapshots.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/3.5-rc-2/taskHistory/fileSnapshots.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/3.5-rc-2/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/3.5-rc-2/taskHistory/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/3.5-rc-2/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/3.5-rc-2/taskHistory/taskHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/download/NetBlocker-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/download/NetBlocker-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/download/readme.txt" beforeDir="false" afterPath="$PROJECT_DIR$/download/readme.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/download/run.bat" beforeDir="false" afterPath="$PROJECT_DIR$/download/run.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/NetBlocker/Listners/ListenArpReply$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/NetBlocker/Listners/ListenArpReply.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/NetBlocker/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/NetBlocker/Scanners/ScanNetwork.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/NetBlocker/Scanners/SendSpoofPackets.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/proto/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/proto/listner/ReplyListner.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/proto/scanners/ArpScanNetwork.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/proto/sender/ArpSpoofSender.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/NetBlocker/Listners/ListenArpReply.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/NetBlocker/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/NetBlocker/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/NetBlocker/Scanners/ScanNetwork.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/NetBlocker/Scanners/SendSpoofPackets.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/proto/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/proto/listener/ReplyListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/proto/scanners/ArpScanNetwork.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/NetBlocker/scanners/ArpScanNetwork.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/proto/sender/ArpSpoofSender.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/proto/sender/SpoofArpReply.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/main.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/NetBlocker/listener/ArpReplyListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/NetBlocker/listener/ArpReplyListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/NetBlocker/scanners/ArpScanNetwork.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/NetBlocker/scanners/ArpScanNetwork.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/NetBlocker/sender/ArpReplySender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/NetBlocker/sender/ArpReplySender.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -59,25 +38,24 @@
     </system>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+    <leaf>
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/NetBlocker/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="364">
-              <caret line="201" column="33" selection-start-line="201" selection-start-column="33" selection-end-line="201" selection-end-column="33" />
+            <state relative-caret-position="1972">
+              <caret line="116" selection-start-line="116" selection-end-line="116" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#processArguments#0;class#Main#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ArpReplyListener.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ArpReplyListener.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/NetBlocker/listener/ArpReplyListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="296">
-              <caret line="93" column="23" selection-start-line="93" selection-start-column="23" selection-end-line="93" selection-end-column="23" />
+            <state relative-caret-position="935">
+              <caret line="92" column="9" selection-start-line="92" selection-start-column="9" selection-end-line="92" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -480,10 +458,12 @@
         <option value="$PROJECT_DIR$/src/main/java/proto/sender/SpoofArpReply.java" />
         <option value="$PROJECT_DIR$/src/main/java/proto/sender/ArpReplySender.java" />
         <option value="$PROJECT_DIR$/src/main/java/proto/Main.java" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/build.gradle" />
-        <option value="$PROJECT_DIR$/src/main/java/NetBlocker/Main.java" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/src/main/java/NetBlocker/scanners/ArpScanNetwork.java" />
+        <option value="$PROJECT_DIR$/src/main/java/NetBlocker/sender/ArpReplySender.java" />
         <option value="$PROJECT_DIR$/src/main/java/NetBlocker/listener/ArpReplyListener.java" />
+        <option value="$PROJECT_DIR$/src/main/java/NetBlocker/Main.java" />
       </list>
     </option>
   </component>
@@ -499,6 +479,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -508,14 +490,65 @@
             </path>
             <path>
               <item name="netblocker" type="b2602c69:ProjectViewProjectNode" />
+              <item name="netblocker" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="netblocker" type="b2602c69:ProjectViewProjectNode" />
+              <item name="netblocker" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="netblocker" type="b2602c69:ProjectViewProjectNode" />
+              <item name="netblocker" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="netblocker" type="b2602c69:ProjectViewProjectNode" />
+              <item name="netblocker" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="NetBlocker" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="netblocker" type="b2602c69:ProjectViewProjectNode" />
+              <item name="netblocker" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="NetBlocker" type="462c0819:PsiDirectoryNode" />
+              <item name="listener" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="netblocker" type="b2602c69:ProjectViewProjectNode" />
+              <item name="netblocker" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="NetBlocker" type="462c0819:PsiDirectoryNode" />
+              <item name="scanners" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="netblocker" type="b2602c69:ProjectViewProjectNode" />
+              <item name="netblocker" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="NetBlocker" type="462c0819:PsiDirectoryNode" />
+              <item name="sender" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="netblocker" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -645,24 +678,35 @@
       <option name="project" value="LOCAL" />
       <updated>1528924149114</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Went back to basic implementation">
+      <created>1540981515590</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1540981515590</updated>
+    </task>
+    <task id="LOCAL-00004" summary="fixed readme.md">
+      <created>1540981656663</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1540981656663</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info active="true" anchor="bottom" id="Messages" order="10" visible="true" weight="0.32897604" />
       <window_info anchor="right" id="Palette&#9;" order="5" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="4" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.13177471" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.21572796" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32897604" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.20152505" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18443497" />
-      <window_info anchor="bottom" id="Build" order="9" weight="0.07120085" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18656716" />
       <window_info anchor="right" id="Gradle" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -674,7 +718,9 @@
       <window_info anchor="right" x="0" y="0" width="434" height="856" id="Documentation" order="6" side_tool="true" weight="0.3296875" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Build" order="9" weight="0.07120085" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.25398514" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.32897604" />
     </layout>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -710,7 +756,8 @@
     <MESSAGE value="probably working but using machine ip and mac for attack" />
     <MESSAGE value="commented out feasturs that were not working that are fake ip to scan the netw&#10;ork, random mac used in sending fake arp reply and sedning fake arp reply for the arp request of that fake ip that was u&#10;sed to scan the network" />
     <MESSAGE value="Went back to basic implementation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Went back to basic implementation" />
+    <MESSAGE value="fixed readme.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed readme.md" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/java/proto/sender/ArpSpoofSender.java" />
@@ -727,8 +774,6 @@
           <caret line="132" column="60" selection-start-line="132" selection-start-column="60" selection-end-line="132" selection-end-column="60" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#processArguments#0;class#Main#0" />
-            <element signature="method#printHelp#0;class#Main#0" />
           </folding>
         </state>
       </provider>
@@ -761,8 +806,6 @@
           <caret line="22" column="21" lean-forward="true" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#processArguments#0;class#Main#0" />
-            <element signature="method#printHelp#0;class#Main#0" />
           </folding>
         </state>
       </provider>
@@ -920,45 +963,13 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/proto1/Main.kt" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/NetBlocker/scanners/ArpScanNetwork.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1836">
-          <caret line="126" column="53" selection-start-line="126" selection-start-column="53" selection-end-line="126" selection-end-column="53" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/main.iml">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/NetBlocker/sender/ArpReplySender.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="549">
-          <caret line="53" column="5" selection-start-line="53" selection-start-column="5" selection-end-line="53" selection-end-column="5" />
-        </state>
-      </provider>
     </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-cli/commons-cli/1.4/40dfd9fdef125e19136135e68d54af6d9b0cfbb8/commons-cli-1.4-sources.jar!/org/apache/commons/cli/HelpFormatter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="549">
           <caret line="578" column="63" selection-start-line="578" selection-start-column="63" selection-end-line="578" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="31" column="21" lean-forward="true" selection-start-line="31" selection-start-column="21" selection-end-line="31" selection-end-column="21" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="510">
-            <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
-          </first_editor>
-          <second_editor />
         </state>
       </provider>
     </entry>
@@ -975,21 +986,52 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/NetBlocker/Main.java">
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="31" column="21" lean-forward="true" selection-start-line="31" selection-start-column="21" selection-end-line="31" selection-end-column="21" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="238">
+            <caret line="14" column="31" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/NetBlocker/scanners/ArpScanNetwork.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="201" column="33" selection-start-line="201" selection-start-column="33" selection-end-line="201" selection-end-column="33" />
+        <state relative-caret-position="629">
+          <caret line="136" column="37" lean-forward="true" selection-start-line="136" selection-start-column="37" selection-end-line="136" selection-end-column="37" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#processArguments#0;class#Main#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/NetBlocker/sender/ArpReplySender.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="731">
+          <caret line="54" column="93" selection-start-line="54" selection-start-column="93" selection-end-line="54" selection-end-column="93" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/NetBlocker/listener/ArpReplyListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="93" column="23" selection-start-line="93" selection-start-column="23" selection-end-line="93" selection-end-column="23" />
+        <state relative-caret-position="935">
+          <caret line="92" column="9" selection-start-line="92" selection-start-column="9" selection-end-line="92" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/NetBlocker/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1972">
+          <caret line="116" selection-start-line="116" selection-end-line="116" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

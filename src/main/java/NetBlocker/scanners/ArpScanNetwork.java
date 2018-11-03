@@ -27,11 +27,10 @@ public class ArpScanNetwork implements Runnable {
     private MacAddress macAddress;
 
     /**
-     *
-     * @param theSendHandle - pcap handle used to scan the network
-     * @param theNetwork -  network id  of the network eg. 192.168.1, 10 , 130.5
-     * @param theIpAddress - ip address to use for scanning the network
-     * @param theMacAddress - mac address to use for scanning the network
+     * @param theSendHandle pcap handle used to scan the network
+     * @param theNetwork    network id  of the network eg. 192.168.1, 10 , 130.5
+     * @param theIpAddress  ip address to use for scanning the network
+     * @param theMacAddress mac address to use for scanning the network
      */
     public ArpScanNetwork(PcapHandle theSendHandle, String theNetwork, InetAddress theIpAddress, MacAddress theMacAddress) {
         this.sendHandle = theSendHandle;
@@ -39,7 +38,7 @@ public class ArpScanNetwork implements Runnable {
         this.ipAddress = theIpAddress;
         this.macAddress = theMacAddress;
         System.out.println("ip and mac used to scan the network");
-        System.out.println( ipAddress + " ------ " + macAddress);
+        System.out.println(ipAddress + " ------ " + macAddress);
     }
 
 
@@ -129,7 +128,7 @@ public class ArpScanNetwork implements Runnable {
 
         EthernetPacket.Builder etherBuilder = new EthernetPacket.Builder();
         etherBuilder.dstAddr(MacAddress.ETHER_BROADCAST_ADDRESS)
-                .srcAddr(macAddress)
+                .srcAddr(this.macAddress)
                 .type(EtherType.ARP)
                 .payloadBuilder(arpBuilder)
                 .paddingAtBuild(true);

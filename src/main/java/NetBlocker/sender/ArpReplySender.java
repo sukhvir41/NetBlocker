@@ -12,7 +12,6 @@ import org.pcap4j.util.MacAddress;
 
 import java.net.InetAddress;
 import java.util.Map;
-import java.util.Objects;
 
 public class ArpReplySender implements Runnable {
 

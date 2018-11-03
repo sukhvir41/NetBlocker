@@ -1,5 +1,6 @@
 package NetBlocker;
 
+import NetBlocker.listener.ArpReplyListener;
 import NetBlocker.scanners.ArpScanNetwork;
 import NetBlocker.sender.ArpReplySender;
 import org.apache.commons.cli.*;
@@ -7,11 +8,13 @@ import org.pcap4j.core.PcapHandle;
 import org.pcap4j.core.PcapNetworkInterface;
 import org.pcap4j.core.Pcaps;
 import org.pcap4j.util.MacAddress;
-import NetBlocker.listener.ArpReplyListener;
 
 import java.net.InetAddress;
 import java.util.*;
-import java.util.concurrent.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class Main implements Runnable {
 
@@ -66,7 +69,7 @@ public class Main implements Runnable {
 
             if (cmd.hasOption("mac")) {
                 String mac = cmd.getOptionValue("mac");
-                this.machineMacAddress = MacAddress.getByName(mac);
+                this.machineMacAddress = MacAddress.getByName(mac,String.valueOf(mac.charAt(2)));
             } else {
                 throw new MissingArgumentException("please provide with this machines mac address");
             }
@@ -110,16 +113,15 @@ public class Main implements Runnable {
     public void run() {
         try {
 
-            processArguments(arguments);
+            processArguments(this.arguments);
 
 
-            PcapNetworkInterface networkInterface = Pcaps.getDevByAddress(machineIpAddress);
+            PcapNetworkInterface networkInterface = Pcaps.getDevByAddress(this.machineIpAddress);
             if (networkInterface == null) {
                 throw new MissingArgumentException("Please provide valid machine ip address");
             }
             System.out.println("Using the following network interface");
             System.out.println(networkInterface.getDescription());
-
 
             PcapHandle sendHandle = networkInterface.openLive(65536, PcapNetworkInterface.PromiscuousMode.PROMISCUOUS, 10);
             PcapHandle receiveHandle = networkInterface.openLive(65536, PcapNetworkInterface.PromiscuousMode.PROMISCUOUS, 10);
@@ -136,9 +138,8 @@ public class Main implements Runnable {
             scheduledExecutor.execute(arpListener);
 
 
-            ArpReplySender arpSender = new ArpReplySender(sendHandle, machineMacAddress, machineToBlock, machinesToAttack);
-            scheduledExecutor.scheduleAtFixedRate(arpSender, 2L, 2L, TimeUnit.SECONDS);
-
+            ArpReplySender arpSender = new ArpReplySender(sendHandle, this.machineMacAddress, this.machineToBlock, this.machinesToAttack);
+            scheduledExecutor.scheduleAtFixedRate(arpSender, 2L, 1L, TimeUnit.SECONDS);
 
             System.out.println("running");
             while (true) {
