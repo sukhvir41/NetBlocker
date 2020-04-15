@@ -1,7 +1,5 @@
 package NetBlocker;
 
-import NetBlocker.listener.ArpReplyListener;
-import NetBlocker.scanners.ArpScanNetwork;
 import NetBlocker.sender.ArpReplySender;
 import org.apache.commons.cli.*;
 import org.pcap4j.core.PcapHandle;
@@ -10,8 +8,7 @@ import org.pcap4j.core.Pcaps;
 import org.pcap4j.util.MacAddress;
 
 import java.net.InetAddress;
-import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.Scanner;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -21,14 +18,10 @@ public class Main implements Runnable {
     // network address of the network eg. 192.168.0
     private String network = "";
 
-    private Map<InetAddress, MacAddress> machinesToAttack;
-
     // ip address to block for others eg. gateway address
     private InetAddress machineToBlock;
 
     private Scanner scanner;
-
-    private Set<MacAddress> machinesToIgnore;
 
     private Options options;
 
@@ -39,8 +32,6 @@ public class Main implements Runnable {
     private String[] arguments;
 
     public Main(String... args) {
-        this.machinesToIgnore = new HashSet<>();
-        this.machinesToAttack = new ConcurrentHashMap<>();
         this.scanner = new Scanner(System.in);
         this.arguments = args;
     }
@@ -69,31 +60,23 @@ public class Main implements Runnable {
 
             if (cmd.hasOption("mac")) {
                 String mac = cmd.getOptionValue("mac");
-                this.machineMacAddress = MacAddress.getByName(mac,String.valueOf(mac.charAt(2)));
+                this.machineMacAddress = MacAddress.getByName(mac, String.valueOf(mac.charAt(2)));
             } else {
-                throw new MissingArgumentException("please provide with this machines mac address");
+                throw new MissingArgumentException("please provide with the machine mac address");
             }
 
             if (cmd.hasOption("ip")) {
                 String ip = cmd.getOptionValue("ip");
                 this.machineIpAddress = InetAddress.getByName(ip);
             } else {
-                throw new MissingArgumentException("please provide with this machines Ip address");
-            }
-
-
-            if (cmd.hasOption("i")) {
-                Arrays.stream(cmd.getOptionValue("i").split(","))
-                        .map(String::trim)
-                        .map(this::convertToMac)
-                        .forEach(this.machinesToIgnore::add);
+                throw new MissingArgumentException("please provide with the machine Ip address");
             }
 
             if (cmd.hasOption("b")) {
                 String ip = cmd.getOptionValue("b");
                 this.machineToBlock = InetAddress.getByName(ip);
             } else {
-                throw new MissingArgumentException("please provide with this machines Ip address");
+                throw new MissingArgumentException("please provide with Ip address of the machine to block for others");
             }
 
 
@@ -115,47 +98,28 @@ public class Main implements Runnable {
 
             processArguments(this.arguments);
 
-
             PcapNetworkInterface networkInterface = Pcaps.getDevByAddress(this.machineIpAddress);
             if (networkInterface == null) {
-                throw new MissingArgumentException("Please provide valid machine ip address");
+                throw new MissingArgumentException("Please provide valid ip address");
             }
             System.out.println("Using the following network interface");
             System.out.println(networkInterface.getDescription());
 
             PcapHandle sendHandle = networkInterface.openLive(65536, PcapNetworkInterface.PromiscuousMode.PROMISCUOUS, 10);
-            PcapHandle receiveHandle = networkInterface.openLive(65536, PcapNetworkInterface.PromiscuousMode.PROMISCUOUS, 10);
 
+            ScheduledExecutorService scheduledExecutor = Executors.newScheduledThreadPool(1);
 
-            ScheduledExecutorService scheduledExecutor = Executors.newScheduledThreadPool(2);
-
-
-            ArpScanNetwork scanNetwork = new ArpScanNetwork(sendHandle, this.network, this.machineIpAddress, this.machineMacAddress);
-            scheduledExecutor.scheduleAtFixedRate(scanNetwork, 2L, 120L, TimeUnit.SECONDS);
-
-
-            ArpReplyListener arpListener = new ArpReplyListener(receiveHandle, this.machinesToIgnore, this.machinesToAttack, this.machineIpAddress, this.machineToBlock);
-            scheduledExecutor.execute(arpListener);
-
-
-            ArpReplySender arpSender = new ArpReplySender(sendHandle, this.machineMacAddress, this.machineToBlock, this.machinesToAttack);
-            scheduledExecutor.scheduleAtFixedRate(arpSender, 2L, 1L, TimeUnit.SECONDS);
+            ArpReplySender arpSender = new ArpReplySender(sendHandle, this.machineMacAddress, this.machineToBlock, this.network);
+            scheduledExecutor.scheduleAtFixedRate(arpSender, 1000, 500, TimeUnit.MILLISECONDS);
 
             System.out.println("running");
             while (true) {
-                System.out.println("press 'p' to print ips under attack or 'q' to quit");
+                System.out.println("press 'q' to quit");
                 String input = scanner.nextLine().trim();
-                if (input.equals("p")) {
-                    System.out.println("ips under attack");
-                    machinesToAttack.forEach((key, value) -> System.out.println(key + "  :  " + value));
-                    System.out.println("-------------------------------------------");
-                    System.out.println("ips not under attack");
-                    machinesToIgnore.forEach(System.out::println);
-                } else if (input.equals("q")) {
+                if (input.equals("q")) {
                     scheduledExecutor.shutdownNow();
+                    sendHandle.close();
                     System.out.println("attack down");
-                    arpListener.close();
-                    System.out.println("listeners down");
                     break;
                 } else {
                     System.out.println("wrong input");
@@ -181,13 +145,11 @@ public class Main implements Runnable {
 
     private void addOptions() {
         // Mandatory arguments
-        options.addOption("n", true, "The network id eg: 192.168.1160.5, 160.5 or 110");
+        options.addOption("n", true, "The network id eg: 192.168.10, 160.5 or 110");
         options.addOption("ip", true, "This machines Ip address");
         options.addOption("mac", true, "This machines Mac Address");
-        options.addOption("b", true, "Ip address to block for others");
+        options.addOption("b", true, "ip address of the machine to block for others");
 
-        // Optional arguments
-        options.addOption("i", true, "The Mac Address of machines that should not be attacked. \',\' separated. eg: aa:bb:cc:dd:ee:ff");
         options.addOption("h", "HELP");
     }
 

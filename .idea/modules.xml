@@ -3,8 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/NetBlocker.iml" filepath="$PROJECT_DIR$/.idea/modules/NetBlocker.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/NetBlocker_main.iml" filepath="$PROJECT_DIR$/.idea/modules/NetBlocker_main.iml" group="NetBlocker" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/NetBlocker_test.iml" filepath="$PROJECT_DIR$/.idea/modules/NetBlocker_test.iml" group="NetBlocker" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/NetBlocker.main.iml" filepath="$PROJECT_DIR$/.idea/modules/NetBlocker.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/NetBlocker.test.iml" filepath="$PROJECT_DIR$/.idea/modules/NetBlocker.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/src/main/main.iml" filepath="$PROJECT_DIR$/src/main/main.iml" />
     </modules>
   </component>
