@@ -1,27 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="38918952-d340-48d0-bed7-26f0450a161c" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/NetBlocker.main.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/NetBlocker.test.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/built.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/NetBlocker_main.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/NetBlocker_test.iml" beforeDir="false" />
+    <list default="true" id="38918952-d340-48d0-bed7-26f0450a161c" name="Default" comment="rolled back to basic version that just does a broadcast. With the very little testing that was done looks like it works.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/download/NetBlocker-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/download/NetBlocker-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/download/readme.txt" beforeDir="false" afterPath="$PROJECT_DIR$/download/readme.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/NetBlocker/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/NetBlocker/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/NetBlocker/sender/ArpReplySender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/NetBlocker/sender/ArpReplySender.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,6 +66,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
@@ -222,7 +206,14 @@
       <option name="project" value="LOCAL" />
       <updated>1540981656663</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="rolled back to basic version that just does a broadcast. With the very little testing that was done looks like it works.">
+      <created>1586932318150</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1586932318150</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -243,33 +234,50 @@
     <MESSAGE value="commented out feasturs that were not working that are fake ip to scan the netw&#10;ork, random mac used in sending fake arp reply and sedning fake arp reply for the arp request of that fake ip that was u&#10;sed to scan the network" />
     <MESSAGE value="Went back to basic implementation" />
     <MESSAGE value="fixed readme.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed readme.md" />
+    <MESSAGE value="rolled back to basic version that just does a broadcast. With the very little testing that was done looks like it works." />
+    <option name="LAST_COMMIT_MESSAGE" value="rolled back to basic version that just does a broadcast. With the very little testing that was done looks like it works." />
   </component>
   <component name="WindowStateProjectService">
+    <state x="552" y="178" key="#Notifications" timestamp="1586932533095">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="178" key="#Notifications/0.0.1920.1040@0.0.1920.1040" timestamp="1586932533095" />
     <state x="808" y="409" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1586912679112">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="808" y="409" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1586912679112" />
-    <state width="1877" height="174" key="GridCell.Tab.0.bottom" timestamp="1586932207585">
+    <state x="621" y="113" key="CommitChangelistDialog2" timestamp="1586932316379">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="174" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1586932207585" />
-    <state width="1877" height="174" key="GridCell.Tab.0.center" timestamp="1586932207584">
+    <state x="621" y="113" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1586932316379" />
+    <state width="1877" height="174" key="GridCell.Tab.0.bottom" timestamp="1586932566179">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="174" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1586932207584" />
-    <state width="1877" height="174" key="GridCell.Tab.0.left" timestamp="1586932207584">
+    <state width="1877" height="174" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1586932566179" />
+    <state width="1877" height="174" key="GridCell.Tab.0.center" timestamp="1586932566179">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="174" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1586932207584" />
-    <state width="1877" height="174" key="GridCell.Tab.0.right" timestamp="1586932207584">
+    <state width="1877" height="174" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1586932566179" />
+    <state width="1877" height="174" key="GridCell.Tab.0.left" timestamp="1586932566178">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="174" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1586932207584" />
+    <state width="1877" height="174" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1586932566178" />
+    <state width="1877" height="174" key="GridCell.Tab.0.right" timestamp="1586932566179">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="174" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1586932566179" />
     <state x="461" y="162" key="SettingsEditor" timestamp="1586912704862">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="162" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1586912704862" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1586932684552">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1586932684552" />
+    <state x="681" y="311" key="git4idea.merge.GitPullDialog" timestamp="1586932361510">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="681" y="311" key="git4idea.merge.GitPullDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1586932361510" />
   </component>
   <component name="masterDetails">
     <states>

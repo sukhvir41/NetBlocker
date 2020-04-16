@@ -110,7 +110,7 @@ public class Main implements Runnable {
             ScheduledExecutorService scheduledExecutor = Executors.newScheduledThreadPool(1);
 
             ArpReplySender arpSender = new ArpReplySender(sendHandle, this.machineMacAddress, this.machineToBlock, this.network);
-            scheduledExecutor.scheduleAtFixedRate(arpSender, 1000, 500, TimeUnit.MILLISECONDS);
+            scheduledExecutor.scheduleAtFixedRate(arpSender, 1000, 100, TimeUnit.MILLISECONDS);
 
             System.out.println("running");
             while (true) {
